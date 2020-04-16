@@ -5,3 +5,4 @@ def required_conf(): #Returns a list of the required conf files
 
 def graph():
     print("graph Module\n")
+    return 0
