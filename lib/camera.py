@@ -1,6 +1,10 @@
 def required_conf(): #Returns a list of the required conf files
-    list = ["serial_dev.conf", "camera.conf"]
+    list = ["camera.conf"]
     return list
+def required_modules(): #Returns a list of the required conf files
+    list = ["serialsetup"]
+    return list
+    
 def setup():
     print("setup")
     
@@ -10,7 +14,7 @@ def camera():
 
     cap = cv2.VideoCapture(0)
     cap.set(3,640)
-    cap.set(4,640)
+    cap.set(4,480)
     i=0
     while (cap.isOpened() == 0):
         i=i+1
