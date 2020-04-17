@@ -1,4 +1,7 @@
 import os, serial, cv2
+import serialsetup
+
+serial_device = serialsetup.return_dev()
 
 while (1):
     avail_modules = []
@@ -9,16 +12,21 @@ while (1):
             file = file.replace(".py","")
             avail_modules.append(file)
             exec("import lib."+file)
+    for file in os.listdir("libsupport"):
+        if (file.endswith(".py") & (file != '__init__.py')):
+            file = file.replace(".py","")
+            avail_modules.append(file)
+            exec("import lib."+file)
     for file in os.listdir("conf"):
         if (file.endswith(".conf")):
             avail_conf.append(file)
 
-    print("Available Modules")
+    print("Available Modules:")
     i = 0
     for name in avail_modules:
         print('(' + str(i) + '): ' + name)
         i=i+1
-    print("Or type 'exit' to quit \n")
+    print("Enter number or 'exit' to quit \n")
 
     for obj in avail_modules:
         func_to_call = "lib." + obj + ".required_modules()"
@@ -38,10 +46,13 @@ while (1):
     i = input("Run Module #: ")
     if i == 'exit':
         break
-    i = int(i)
-    module = avail_modules[i]
+    elif i == 'rescan':
+        serial_device = serialsetup.return_dev()
+    else:
+        i = int(i)
+        module = avail_modules[i]
     
-    func_to_call = "lib." + module + "." + module + "()"
-    success = eval(func_to_call)
-    if success != 0:
-        print("Uh Oh - Looks like something went wrong\n")
+        func_to_call = "lib." + module + "." + module + "(serial_device)"
+        success = eval(func_to_call)
+        if success != 0:
+            print("Uh Oh - Looks like something went wrong\n")
