@@ -7,5 +7,5 @@ and a function with the same name as the module (which will launch the module).
 Config files should be located in /conf, and should be called <name>.conf
 
 
-Reuqires pySerial, openCV2, matplotlib.
+Certainly reuqires: pySerial, openCV2, matplotlib, numpy.
 May require others, check the scripts.
