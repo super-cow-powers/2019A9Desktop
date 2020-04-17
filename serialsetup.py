@@ -1,4 +1,6 @@
-
+"""
+Copyright David Miall, 2020
+"""
 def return_dev():
     import serial
     f = open("conf/serial_dev.conf", "r")

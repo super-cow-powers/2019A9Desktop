@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Copyright David Miall, 2020
+"""
 import os, serial, cv2
 import serialsetup
 

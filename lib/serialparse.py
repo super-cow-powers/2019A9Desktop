@@ -1,3 +1,7 @@
+"""
+Copyright David Miall, 2020
+"""
+
 class SerialPacket:
     def __init__(self, measurement_type, value):
         self.mType = measurement_type
